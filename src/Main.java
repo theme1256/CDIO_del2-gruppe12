@@ -13,10 +13,11 @@ public class Main {
 
         Shaker shaker = new Shaker(numberOfDices, numberOfDiceSides);
 
+        // Winner has to be defined, will be overwritten anyway
         Player winner = players[0];
 
-        while(true) {
-            boolean winner_found = false;
+        boolean winner_found = false;
+        while(!winner_found) {
             for (int i = 0; i < numberOfPlayers; i++) {
                 boolean extra_turn = false;
                 System.out.println("Now it's " + players[i].username + "'s turn");
@@ -74,8 +75,6 @@ public class Main {
                 if(extra_turn)
                     i--;
             }
-            if(winner_found)
-                break;
         }
 
         System.out.println("");
