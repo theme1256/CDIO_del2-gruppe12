@@ -13,6 +13,6 @@ class Dice {
 
     int roll() {
         Random rand = new Random();
-        return 1 + rand.nextInt((numberOfSides-1));
+        return 1 + rand.nextInt((numberOfSides));
     }
 }
