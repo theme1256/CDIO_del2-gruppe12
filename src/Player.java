@@ -12,6 +12,10 @@ class Player {
         this.set_username();
         this.account = new Account(score);
     }
+    Player(int score, String username) {
+        this.username = username;
+        this.account = new Account(score);
+    }
 
     private void set_username() {
         System.out.println("What is your name?");
