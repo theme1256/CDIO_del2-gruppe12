@@ -7,31 +7,25 @@ class DiceTest {
     @Test
     void roll_limit() {
         Dice dice = new Dice();
-        int face7 = 0;
-        for (int i = 0; i < 1000; i++) {
-            if (dice.roll() == 7) {
-                face7++;
-            }
+        int face = 0;
+        for (int i = 0; i < 10000; i++) {
+            assertFalse(dice.roll() > 6, "Der blev slået en værdi over 6");
         }
-        assertEquals(0, face7);
     }
 
     @Test
     void roll() {
+        int normalmargin = 400;
+        int loops = 6000;
         Dice dice = new Dice();
-        int face1 = 0, face2 = 0, face3 = 0, face4 = 0, face5 = 0, face6 = 0;
-        for (int i = 0; i < 1000; i++) {
-            switch (dice.roll()) {
-                case 1: face1++; break;
-                case 2: face2++; break;
-                case 3: face3++; break;
-                case 4: face4++; break;
-                case 5: face5++; break;
-                case 6: face6++; break;
-                default:
-                    break;
-            }
+        int[] faces = new int[6];
+        for (int i = 0; i < loops; i++) {
+            faces[dice.roll()-1]++;
         }
-        assertTrue((face1 > 0 && face2 > 0 && face3 > 0 && face4 > 0 && face5 > 0 && face6 > 0), "Der blev slået noget af alle sider");
+        for (int face : faces) {
+            assertNotEquals(0, face, "Der var en side der slet ikke blev slået");
+            assertTrue((face <= loops/6+normalmargin), "Et tal blev slået meget mere");
+            assertTrue((loops/6-normalmargin <= face), "Et tal blev slået meget mindre");
+        }
     }
 }
