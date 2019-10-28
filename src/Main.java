@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     private static int numberOfPlayers = 2;
     private static int numberOfDices = 2;
@@ -6,24 +8,27 @@ public class Main {
     private static int startingScore = 1000;
 
     public static void main(String[] args) {
+        // Initialize the players
         Player[] players = new Player[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
             players[i] = new Player(startingScore);
         }
 
+        // Initialize the Shaker and the Dices inside it
         Shaker shaker = new Shaker(numberOfDices, numberOfDiceSides);
 
-        // Winner has to be defined, will be overwritten anyway
-        Player winner = players[0];
-
+        // While a winner is not found, play the game
         boolean winner_found = false;
         while(!winner_found) {
+            // Loop the players
             for (int i = 0; i < numberOfPlayers; i++) {
-                boolean extra_turn = false;
+                // Give the user some info and roll the dices
                 System.out.println("Now it's " + players[i].username + "'s turn");
-
                 int roll = shaker.shake_and_sum();
                 System.out.println("You rolled " + roll);
+
+                // Do a lookup on what score to give, if a text should be displayed and if an extra turn should be given
+                boolean extra_turn = false;
                 int score = 0;
                 switch (roll) {
                     case 2:
@@ -51,7 +56,7 @@ public class Main {
                         score = 60;
                         break;
                     case 10:
-                        System.out.println("Your get an extra turn!");
+                        System.out.println("You get an extra turn!");
                         extra_turn = true;
                         score = -80;
                         break;
@@ -63,21 +68,31 @@ public class Main {
                         score = 650;
                         break;
                 }
-                System.out.println("Add " + score + " to your balance");
 
+                // Add the score to the players balance and give som information to the player
+                System.out.println("Add " + score + " to your balance");
                 int player_score = players[i].add_to_balance(score);
                 System.out.println("Your score is now " + player_score);
+
+                // See if the player won or not, break the for-loop if a winner is found and give som information
                 if(player_score >= winningScore) {
                     winner_found = true;
-                    winner = players[i];
+
+                    System.out.println("");
+                    System.out.println("The winner is " + players[i].username);
                     break;
                 }
+
+                // If a player gets an extra turn, count the loop backwards, so that it is the same player again next time
                 if(extra_turn)
                     i--;
             }
         }
 
+        // This makes the program stop so that the players have the time to see what happend
         System.out.println("");
-        System.out.println("The winner is " + winner.username);
+        System.out.println("Press enter to exit program");
+        Scanner stopper = new Scanner(System.in);
+        stopper.nextLine();
     }
 }
