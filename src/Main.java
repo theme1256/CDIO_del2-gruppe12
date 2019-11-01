@@ -81,6 +81,9 @@ public class Main {
                     System.out.println("");
                     System.out.println("The winner is " + players[i].username);
                     break;
+                } else if(player_score < 0) {
+                    System.out.println("You can't have a negative score, the bank saves you, you now have " + startingScore);
+                    players[i].reset_balance(startingScore);
                 }
 
                 // If a player gets an extra turn, count the loop backwards, so that it is the same player again next time

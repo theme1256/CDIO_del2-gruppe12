@@ -15,4 +15,11 @@ class PlayerTest {
         Player p = new Player(1000, "");
         assertEquals(1000, p.get_balance());
     }
+
+    @Test
+    void reset_score() {
+        Player p = new Player(1000, "");
+        p.reset_balance(20000);
+        assertEquals(20000, p.get_balance());
+    }
 }

@@ -29,4 +29,7 @@ class Player {
     int get_balance() {
         return this.account.get_balance();
     }
+    void reset_balance(int to) {
+        this.account.set_balance(to);
+    }
 }
