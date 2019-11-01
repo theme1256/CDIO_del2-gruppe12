@@ -12,6 +12,10 @@ class Player {
         this.set_username();
         this.account = new Account(score);
     }
+    Player(String username) {
+        this.username = username;
+        this.account = new Account();
+    }
     Player(int score, String username) {
         this.username = username;
         this.account = new Account(score);
