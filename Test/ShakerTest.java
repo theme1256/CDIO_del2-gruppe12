@@ -8,7 +8,8 @@ class ShakerTest {
     void shake() {
         Shaker shaker = new Shaker();
         int[] sum = shaker.shake();
-        assertTrue((1 <= sum[0] && sum[0] <= 6 && 1 <= sum[1] && sum[1] <= 6));
+        assertTrue((1 <= sum[0] && sum[0] <= 6));
+        assertTrue((1 <= sum[1] && sum[1] <= 6));
     }
 
     @Test

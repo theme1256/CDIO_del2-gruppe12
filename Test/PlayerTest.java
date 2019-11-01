@@ -18,7 +18,7 @@ class PlayerTest {
 
     @Test
     void reset_score() {
-        Player p = new Player(1000, "");
+        Player p = new Player("");
         p.reset_balance(20000);
         assertEquals(20000, p.get_balance());
     }
