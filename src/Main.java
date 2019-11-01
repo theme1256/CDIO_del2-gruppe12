@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 public class Main {
     private static int numberOfPlayers = 2;
-    private static int numberOfDices = 2;
-    private static int numberOfDiceSides = 6;
     private static int winningScore = 3000;
     private static int startingScore = 1000;
 
@@ -15,7 +13,7 @@ public class Main {
         }
 
         // Initialize the Shaker and the Dices inside it
-        Shaker shaker = new Shaker(numberOfDices, numberOfDiceSides);
+        Shaker shaker = new Shaker();
 
         // While a winner is not found, play the game
         boolean winner_found = false;
